@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
@@ -9,12 +9,32 @@ function App() {
   function addTodo(todo) {
     setTodos([todo, ...todos]);
   }
+  function toggleComplete(id) {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.div === id) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
+        }
+        return todo;
+      })
+    );
+  }
+  function removeTodo(id) {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }
   return (
     <div className="App">
       <header className="App-header">
         <p>TODO list</p>
         <TodoForm addTodo={addTodo} />
-        <TodoList todos={todos} />
+        <TodoList
+          todos={todos}
+          toggleComplete={toggleComplete}
+          removeTodo={removeTodo}
+        />
       </header>
     </div>
   );
