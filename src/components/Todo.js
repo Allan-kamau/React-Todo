@@ -8,6 +8,7 @@ function Todo({ todo, toggleComplete, removeTodo }) {
   }
   return (
     <div style={{ display: "flex" }}>
+
       <input type="checkbox" onClick={handleCheckboxClick} />
       <li
         style={{
@@ -18,6 +19,8 @@ function Todo({ todo, toggleComplete, removeTodo }) {
         {todo.task}
       </li>
       <button onClick={handleRemoveClick}>X</button>
+
+
     </div>
   );
 }
