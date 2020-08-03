@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import logo from "./logo.svg";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
@@ -9,6 +9,17 @@ import axios from "axios";
 
 function App() {
   const [todos, setTodos] = useState([]);
+
+  useEffect(function () {
+    refreshList();
+  });
+
+  const refreshList = () => {
+    axios.get("http://localhost:8000/api/todos/");
+    // .then((res) => setTasks(res.data))
+    // .catch((err) => console.log(err));
+  };
+
   function addTodo(todo) {
     setTodos([todo, ...todos]);
   }
@@ -26,7 +37,7 @@ function App() {
     );
   }
   function removeTodo(id) {
-    // setTodos(todos.filter((todo) => todo.id !== id));
+    setTodos(todos.filter((todo) => todo.id !== id));
   }
   return (
     <div className="App">
